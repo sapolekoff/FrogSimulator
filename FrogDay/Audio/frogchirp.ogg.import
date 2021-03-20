@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/frogchirp.ogg-e77ca7e2a139655a91c18207659e1daf.oggstr"
+
+[deps]
+
+source_file="res://Audio/frogchirp.ogg"
+dest_files=[ "res://.import/frogchirp.ogg-e77ca7e2a139655a91c18207659e1daf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
