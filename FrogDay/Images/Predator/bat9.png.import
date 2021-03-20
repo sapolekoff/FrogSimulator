@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/inflated.png-af0276a34e1bebcc18ebadbc12e1d32a.stex"
+path="res://.import/bat9.png-e5261d53fb65bef80654ed4313c9849f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/inflated.png"
-dest_files=[ "res://.import/inflated.png-af0276a34e1bebcc18ebadbc12e1d32a.stex" ]
+source_file="res://Images/Predator/bat9.png"
+dest_files=[ "res://.import/bat9.png-e5261d53fb65bef80654ed4313c9849f.stex" ]
 
 [params]
 

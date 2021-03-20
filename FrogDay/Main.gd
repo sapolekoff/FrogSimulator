@@ -4,11 +4,14 @@ var chirp = 0
 var lastChirp = 0
 var score = 0
 var alive = false
+var isLurking = false
 
 export (PackedScene) var Popup ## Necessary to instantiate popups
 onready var PopupSpawn = get_node("PopupSpawn") ## Necessary to instantiate popups
+export (PackedScene) var Silhouette ## Necessary to instantiate pred warning
 
 func _ready():
+	randomize()
 	new_game()
 
 
@@ -75,12 +78,45 @@ func CallPopup(text):
 	yield(get_tree().create_timer(0.5), "timeout")
 	popup.queue_free() ## Deletes the popup instance
 	
+func _on_PredCheck_timeout():
+	## Every 2 seconds, check if predator is currenly lurking
+	## If not, begin predator lurking/attack loop
+	if isLurking == false:
+		Predator()
+	
+func Predator(): ## This function controls predator actions
+	isLurking = true
+	## Now, add random extra time (0-6 seconds) then predator warning plays
+	yield(get_tree().create_timer(rand_range(0, 6)), "timeout")
+	## after timer timeout, play animation / sound indicating that predator is coming
+	var pred = Silhouette.instance()
+	add_child(pred)
+	pred.position = $PredPath/PredPathSpawn.position
+	pred.linear_velocity = Vector2(500,0)
+	yield(get_tree().create_timer(2), "timeout")
+	## 2 seconds after animation plays, predator attacks
+
+	isLurking = false
+	## If you have croaked since the predator animation played, you get attacked
+	if chirp <= 1.9:
+		GetEaten()
+	
+func GetEaten(): 
+	$FemaleTimer.stop()
+	$HUD/Text.text = "You were eaten..."
+	$HUD/Text.show()
+	alive = false
 
 func _on_StartTimer_timeout():
-	$FemaleTimer.start() ## This starts the female timer a bit after the game starts
+	## This starts the female and predator timers a bit after the game starts
+	$FemaleTimer.start() 
+	Predator()
 
 func game_over(): ## When the female reaches you (AKA you win)
 	$FemaleTimer.stop()
 	alive = false
 	$HUD/Text.text = "You won!"
 	$HUD/Text.show()
+
+
+

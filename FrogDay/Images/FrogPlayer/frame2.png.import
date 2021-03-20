@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/frame2.png-022dc31baf255d5e5c24988de2d8f4b4.stex"
+path="res://.import/frame2.png-daed29f43ac9b3309e4009221d4ce97e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/frame2.png"
-dest_files=[ "res://.import/frame2.png-022dc31baf255d5e5c24988de2d8f4b4.stex" ]
+source_file="res://Images/FrogPlayer/frame2.png"
+dest_files=[ "res://.import/frame2.png-daed29f43ac9b3309e4009221d4ce97e.stex" ]
 
 [params]
 
