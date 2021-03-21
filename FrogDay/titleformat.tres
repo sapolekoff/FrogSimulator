@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://Images/KurriIslandPersonalRegular-WyVaV.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 220
+outline_size = 20
+outline_color = Color( 0, 0.225311, 0.269531, 1 )
+extra_spacing_top = 100
+font_data = ExtResource( 1 )

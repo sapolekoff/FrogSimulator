@@ -7,7 +7,6 @@
 [ext_resource path="res://Images/FrogPlayer/frame2.png" type="Texture" id=5]
 [ext_resource path="res://Audio/frogchirp.ogg" type="AudioStream" id=6]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ) ],
@@ -23,9 +22,6 @@ radius = 766.747
 position = Vector2( 316.377, 923.035 )
 scale = Vector2( 0.35, 0.35 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -35,5 +31,4 @@ shape = SubResource( 2 )
 
 [node name="ChirpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-[connection signal="body_entered" from="." to="." method="_on_Froge_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animation_finished"]
