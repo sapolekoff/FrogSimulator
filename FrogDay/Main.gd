@@ -3,6 +3,7 @@ extends Node
 var chirp = 0
 var lastChirp = 0
 var score = 0
+var scoretot = 0
 var alive = false
 var isLurking = false
 var game_over = preload("res://GameOver.tscn")
@@ -14,10 +15,10 @@ export (PackedScene) var Silhouette ## Necessary to instantiate pred warning
 func _ready():
 	new_game()
 
-
 func new_game(): ## Resets all the variables so a new game can start
 	randomize() # Creates new random seed
 	score = 0
+	scoretot = 0
 	chirp = 0
 	lastChirp = 0
 	alive = true
@@ -28,12 +29,12 @@ func new_game(): ## Resets all the variables so a new game can start
 	$HUD/Text.show()
 	yield(get_tree().create_timer(1), "timeout")
 	$HUD/Text.hide()
-	## restart female's position as well
 
 func _on_StartTimer_timeout():
 	## This starts the female and predator timers a bit after the game starts
-	$FemaleTimer.start() 
 	$PredCheck.start()
+	if Global.mode == "game":
+		$FemaleTimer.start()
 
 func _input(event): ## What happens when you tap the screen
 	if alive == true and event is InputEventScreenTouch and event.pressed:
@@ -46,28 +47,32 @@ func _input(event): ## What happens when you tap the screen
 func _process(delta):
 	chirp += 1 * delta
 	# This counts up internally so chirp = # seconds since you last tapped screen
+	if Input.is_action_pressed("ui_accept"):
+		scoretot = 1000
+		GetEaten()
 	
 func _on_FemaleTimer_timeout():
 	## Female checks your score every 3 sec and moves accordingly
 	## Then score is reset, so she will not move again if you stop chirping
-	if score >= 25:
+	if score >= 12:
 		MoveFemale(6)
-	elif score >= 15:
+	elif score >= 9:
 		MoveFemale(3)
-	elif score >= 10:
+	elif score >= 5:
 		MoveFemale(2)
 	score = 0
 
 func ScoreCalc(chrp):
 	## You receive points based on your chirping interval
 	if chrp >= 0.95 and chrp <= 1.05:
-		score += 10
+		score += 5
 		CallPopup("Great!")
 	elif chrp >= 0.9 and chrp <= 1.1:
-		score += 5
+		score += 2
 		CallPopup("Nice!")
 	elif chrp >= 0.8 and chrp <= 1.2:
-		score += 2
+		score += 1
+	scoretot += score
 
 func MoveFemale(speed):
 	$Female.walking = true
@@ -114,6 +119,7 @@ func Predator(): ## This function controls predator actions
 	
 func GetEaten(): ## When bat collides with frog (signal "eaten")
 	$Predator.linear_velocity = Vector2(0,0)
+	Global.prevscore = scoretot
 	yield(get_tree().create_timer(0.1), "timeout")
 	Global.ending = "lose"
 	get_tree().change_scene_to(game_over)

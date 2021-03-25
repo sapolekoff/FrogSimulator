@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://titleformat.tres" type="DynamicFont" id=1]
 [ext_resource path="res://GameOver.gd" type="Script" id=2]
@@ -7,6 +7,22 @@
 [ext_resource path="res://Button_P.tres" type="StyleBox" id=5]
 [ext_resource path="res://Images/end_dead.png" type="Texture" id=6]
 [ext_resource path="res://Images/end_win.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=3]
+size = 180
+outline_size = 20
+outline_color = Color( 0, 0.225311, 0.269531, 1 )
+extra_spacing_top = 50
+extra_spacing_bottom = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 150
+outline_size = 20
+outline_color = Color( 0, 0.225311, 0.269531, 1 )
+extra_spacing_top = 20
+extra_spacing_bottom = 20
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
@@ -26,13 +42,47 @@ __meta__ = {
 }
 
 [node name="EndText" type="Label" parent="."]
-margin_top = 58.368
-margin_right = 1079.0
-margin_bottom = 693.368
-rect_scale = Vector2( 0.996726, 1 )
+visible = false
+margin_right = 1080.0
+margin_bottom = 635.0
+size_flags_horizontal = 5
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.423529, 0.988235, 0.631373, 1 )
 text = "You were eaten..."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+visible = false
+margin_left = 22.5101
+margin_top = 109.267
+margin_right = 1059.51
+margin_bottom = 387.267
+rect_min_size = Vector2( 1000, 200 )
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.423529, 0.988235, 0.631373, 1 )
+text = "Score: 10000"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS" type="Label" parent="."]
+visible = false
+margin_left = 22.0
+margin_top = 383.0
+margin_right = 1059.0
+margin_bottom = 610.0
+rect_min_size = Vector2( 1000, 200 )
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.337255, 0.678431, 0.545098, 1 )
+text = "Record: 10000"
 align = 1
 autowrap = true
 __meta__ = {
